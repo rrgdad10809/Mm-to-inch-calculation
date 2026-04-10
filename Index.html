@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<title>Machinist Converter</title>
+
+<style>
+body { font-family: Arial; background:#111; color:#0f0; text-align:center; padding:20px; }
+input { font-size:28px; padding:12px; width:220px; text-align:center; }
+.result { font-size:40px; margin-top:20px; color:#00ffcc; }
+button { margin-top:15px; padding:10px; font-size:16px; }
+</style>
+</head>
+
+<body>
+
+<h2>Machinist Converter</h2>
+<p>Inches → mm (÷25.4)</p>
+
+<input id="inches" type="number" step="any" oninput="convert()" placeholder="Enter inches">
+
+<div class="result" id="output">0 mm</div>
+
+<button onclick="clearBox()">Clear</button>
+
+<script>
+function convert() {
+  let val = document.getElementById("inches").value;
+  let mm = val / 25.4;
+  document.getElementById("output").innerText =
+    (mm ? mm.toFixed(4) : "0") + " mm";
+}
+
+function clearBox(){
+  document.getElementById("inches").value = "";
+  document.getElementById("output").innerText = "0 mm";
+}
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+
+</body>
+</html>
